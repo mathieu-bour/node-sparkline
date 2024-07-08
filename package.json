@@ -1,40 +1,50 @@
 {
-  "name": "@mathieu-bour/node-sparkline",
-  "version": "2.-.0",
-  "description": "A lightweight and zero-dependencies pure Node.js sparkline generator",
-  "author": "Elysium Phase <hi@elysiumphase.com> (https://github.com/elysiumphase)",
-  "type": "module",
-  "exports": {
-    ".": "./src/index.js"
-  },
-  "private": false,
-  "preferGlobal": false,
-  "analyze": false,
-  "license": "MIT",
-  "scripts": {
-    "lint": "biome ci",
-    "test": "NODE_ENV=test mocha test/* --exit",
-    "build": "tsup"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/elysiumphase/node-sparkline.git"
-  },
-  "keywords": ["node.js", "node js", "node", "sparkline", "trading", "crypto", "bitcoin", "ethereum", "cardano"],
-  "files": ["src"],
-  "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@types/bun": "^1.1.6",
-    "@types/debug": "^4.1.12",
-    "@types/svg-parser": "^2.0.6",
-    "bun-plugin-dts": "^0.2.3",
-    "chai": "4.3.7",
-    "mocha": "10.2.0",
-    "svg-parser": "2.0.4",
-    "tsup": "^8.1.0"
-  },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
-  "dependencies": {
-    "debug": "^4.3.5"
-  }
+	"name": "@mathieu-bour/node-sparkline",
+	"version": "2.0.0-alpha.0",
+	"description": "A lightweight and zero-dependencies pure Node.js sparkline generator",
+	"author": "Elysium Phase <hi@elysiumphase.com> (https://github.com/elysiumphase)",
+	"type": "module",
+	"exports": {
+		".": "./src/index.js"
+	},
+	"private": false,
+	"preferGlobal": false,
+	"analyze": false,
+	"license": "MIT",
+	"scripts": {
+		"lint": "biome ci",
+		"test": "NODE_ENV=test mocha test/* --exit",
+		"build": "tsup"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/elysiumphase/node-sparkline.git"
+	},
+	"keywords": [
+		"node.js",
+		"node js",
+		"node",
+		"sparkline",
+		"trading",
+		"crypto",
+		"bitcoin",
+		"ethereum",
+		"cardano"
+	],
+	"files": ["src"],
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@types/bun": "^1.1.6",
+		"@types/debug": "^4.1.12",
+		"@types/svg-parser": "^2.0.6",
+		"bun-plugin-dts": "^0.2.3",
+		"chai": "4.3.7",
+		"mocha": "10.2.0",
+		"svg-parser": "2.0.4",
+		"tsup": "^8.1.0"
+	},
+	"packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
+	"dependencies": {
+		"debug": "^4.3.5"
+	}
 }
