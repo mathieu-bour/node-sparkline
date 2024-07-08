@@ -1,3 +1,14 @@
+import { minmax } from './helpers/math';
+
+export interface SparklineSettings {
+  values: number[];
+  width: number;
+  height: number;
+  stroke?: string;
+  strokeWidth?: number;
+  strokeOpacity?: number;
+}
+
 /**
  * Sparkline
  *
@@ -13,19 +24,17 @@
  * calculate()
  * generate()
  */
+export default class Sparkline {
+  points: string[];
+  values: number[];
+  valuesLen: number;
+  width: number;
+  height: number;
+  stroke: string | undefined;
+  strokeWidth: number | undefined;
+  strokeOpacity: number | undefined;
 
-const { math: { minmax } } = require('../helpers');
-
-// note that input values are being checked at lib index
-class Sparkline {
-  constructor({
-    values,
-    width,
-    height,
-    stroke,
-    strokeWidth,
-    strokeOpacity,
-  } = {}) {
+  constructor({ values, width, height, stroke, strokeWidth, strokeOpacity }: SparklineSettings) {
     this.points = [];
     this.values = values;
     this.valuesLen = this.values.length;
@@ -40,6 +49,11 @@ class Sparkline {
   calculate() {
     const offsetX = this.width / this.valuesLen;
     let { min, max } = minmax(this.values);
+
+    if (min === undefined || max === undefined) {
+      throw new Error('min or max values are undefined');
+    }
+
     let diff = max - min;
     let x = offsetX;
 
@@ -53,19 +67,20 @@ class Sparkline {
         min = 0;
         max *= 2;
       } else {
-        min = min + max;
+        min += max;
         max = 0;
       }
       diff = max - min;
     }
 
     this.points.push('0');
-    this.values.forEach((value) => {
+
+    for (const value of this.values) {
       const y = ((max - value) / diff) * this.height;
 
       this.points.push(`${y} ${x}`);
       x += offsetX;
-    });
+    }
   }
 
   generate() {
@@ -79,5 +94,3 @@ class Sparkline {
     return `<svg xmlns="http://www.w3.org/2000/svg" ${box} ${render}>${polyline}</svg>`;
   }
 }
-
-module.exports = Sparkline;

@@ -1,5 +1,5 @@
 // internal errors
-const Codes = {
+const LibErrorCodes = {
   MISSING_VALUES: {
     code: 'MISSING_VALUES',
     message: 'missing values to draw the sparkline',
@@ -10,6 +10,6 @@ const Codes = {
     message: 'values must be an array',
     name: 'InputError',
   },
-};
+} as const;
 
-module.exports = Codes;
+export default LibErrorCodes;

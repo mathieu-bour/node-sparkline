@@ -3,7 +3,6 @@
  *
  *    - isColor(color) -> Boolean
  */
-const { is } = require('./object');
 
 // named colors supported by svg format
 const colors = [
@@ -157,20 +156,18 @@ const colors = [
   'yellowgreen',
 ];
 
-const isColor = function isColor(color) {
-  if (is(String, color)) {
-    if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)) {
-      return true;
-    }
+export function isColor(color: unknown) {
+  if (typeof color !== 'string') {
+    return false;
+  }
 
-    if (colors.indexOf(color) !== -1) {
-      return true;
-    }
+  if (colors.includes(color)) {
+    return true;
+  }
+
+  if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)) {
+    return true;
   }
 
   return false;
-};
-
-module.exports = Object.freeze({
-  isColor,
-});
+}

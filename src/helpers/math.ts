@@ -1,5 +1,3 @@
-const { is } = require('./object');
-
 /**
  * @func minmax
  *
@@ -9,32 +7,27 @@ const { is } = require('./object');
  * @param  {Array} array
  * @return {Object} { min, max }
  */
-const minmax = function minmax(array) {
-  if (!is(Array, array)) {
+export function minmax<T extends string | number>(array: T[]): { min: T | undefined; max: T | undefined } {
+  if (!Array.isArray(array) || array.length === 0) {
     return { min: undefined, max: undefined };
   }
 
-  let min;
-  let max;
+  let min: T | undefined;
+  let max: T | undefined;
 
-  array.forEach((value) => {
+  for (const value of array) {
     if (max === undefined) {
       max = value;
-    } else if (value > max) {
+    } else if (max !== null && value > max) {
       max = value;
     }
 
     if (min === undefined) {
       min = value;
-    } else if (value < min) {
+    } else if (min !== null && value < min) {
       min = value;
     }
-  });
+  }
 
   return { min, max };
-};
-
-// exports
-module.exports = Object.freeze({
-  minmax,
-});
+}

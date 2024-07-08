@@ -3,7 +3,6 @@
  *
  *    - num(thing, { le, ge } = {}) -> Number or undefined
  */
-const { is, exists } = require('./object');
 
 /**
  * @func number
@@ -16,27 +15,24 @@ const { is, exists } = require('./object');
  * @param  {Any} thing a value to cast to primitive number
  * @return {Number|undefined}
  */
-const number = function number(thing) {
-  let castNum;
+export function number(thing: unknown): number | undefined {
+  if (typeof thing === 'number' && Number.isFinite(thing)) {
+    return thing;
+  }
 
-  if (exists(thing)) {
-    const value = thing.valueOf();
-
-    if (is(Number, value)) {
-      if (Number.isFinite(value)) {
-        castNum = value;
-      }
-    } else if (is(String, value) || is(Boolean, value)) {
-      const cast = Number(value);
-
-      if (Number.isFinite(cast)) {
-        castNum = cast;
-      }
+  if (typeof thing === 'string') {
+    const cast = Number(thing);
+    if (Number.isFinite(cast)) {
+      return cast;
     }
   }
 
-  return castNum;
-};
+  if (typeof thing === 'boolean' || thing instanceof Boolean || thing instanceof Number) {
+    return Number(thing);
+  }
+
+  return undefined;
+}
 
 /**
  * @func num
@@ -48,7 +44,7 @@ const number = function number(thing) {
  * @param  {Any} thing a value to cast to primitive number
  * @return {Number|undefined}
  */
-const num = function num(thing, { ge, le } = {}) {
+export function num(thing: unknown, { ge, le }: { ge?: number; le?: number } = {}) {
   let castNum = number(thing);
 
   if (castNum !== undefined) {
@@ -67,10 +63,4 @@ const num = function num(thing, { ge, le } = {}) {
   }
 
   return castNum;
-};
-
-// exports
-module.exports = Object.freeze({
-  number,
-  num,
-});
+}
