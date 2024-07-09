@@ -1,13 +1,18 @@
 {
   "name": "@mathieu-bour/node-sparkline",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "A lightweight and zero-dependencies pure Node.js sparkline generator",
   "keywords": ["node.js", "node js", "node", "sparkline", "trading", "crypto", "bitcoin", "ethereum", "cardano"],
   "maintainers": ["Mathieu Bour <mat@bour.io>"],
   "author": "Elysium Phase <hi@elysiumphase.com> (https://github.com/elysiumphase)",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
   },
   "files": ["dist"],
   "license": "MIT",
@@ -32,5 +37,5 @@
     "svg-parser": "2.0.4",
     "tsup": "^8.1.0"
   },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+  "packageManager": "bun@1.1.18"
 }
